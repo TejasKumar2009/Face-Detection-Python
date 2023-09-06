@@ -23,8 +23,15 @@ while True:
 
             face_score = int(face.score[0]*100)
 
-            cv.rectangle(frame, face_points, (0,0,255), 3)
-            cv.putText(frame, f"{face_score}%", (face_points[0], face_points[1]-20), cv.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 3)
+            if (face_score>=90):
+                cv.rectangle(frame, face_points, (0,255,0), 3)
+                cv.putText(frame, f"{face_score}%", (face_points[0], face_points[1]-20), cv.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 3)
+            elif (face_score>=70):
+                cv.rectangle(frame, face_points, (255,0,0), 3)
+                cv.putText(frame, f"{face_score}%", (face_points[0], face_points[1]-20), cv.FONT_HERSHEY_SIMPLEX, 1, (255,0,0), 3)
+            else:
+                cv.rectangle(frame, face_points, (0,0,255), 3)
+                cv.putText(frame, f"{face_score}%", (face_points[0], face_points[1]-20), cv.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 3)
 
 
     cv.imshow("Face Detection", frame)
